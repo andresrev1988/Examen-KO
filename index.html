@@ -86,7 +86,39 @@
                     		</tr>
                 		</tbody>
             		</table>
-				</div>
+<!--Seleccion de Productos-->
+            		<form role="form">                		
+                		<legend>Orden de Compra</legend>
+                		<div class="row">
+                    		<div class="col-lg-6 col-md-6 col-sm-6">   
+                    			<fieldset class="col-lg-4 col-md-4 col-sm-4">
+                                	<label for="name" class="control-label ">Productos: </label>
+                                	<label for="name" class="control-label ">Precio: </label>
+                                	<label for="name" class="control-label ">Cantidad: </label>
+								</fieldset>                                
+                                <fieldset class="col-lg-8 col-md-8 col-sm-8">        
+                                	<select class="custom-select" data-bind="foreach: productos">
+                                    	<option data-bind="text:$data.producto"></option>
+                                	</select>
+                                	<input type="text" class="form-control" id="precio" disabled />
+                                	<input type="text" class="form-control" id="cantidad" />
+								</fieldset>                                             		
+                        	</div>           			                
+
+                        	<div class="col-lg-6 col-md-6 col-sm-6">                       
+                        		<fieldset class="col-lg-4 col-md-4 col-sm-4">
+                                	<label for="name" class="control-label ">Identificación: </label>
+                                	<label for="name" class="control-label ">Nombre: </label>
+								</fieldset>                                
+                                <fieldset class="col-lg-8 col-md-8 col-sm-8">
+                                	<input type="text" class="form-control" id="cedula"/>
+                                	<input type="text" class="form-control" id="nombre"/>
+                                	<button type="button" class="btn btn-success" onclick="">Registrar</button>
+									<button type="reset" class="btn btn-danger">Cancelar</button>
+								</fieldset>                                
+							</div> 
+                        </div>
+		           </form>				
 			</div>
 		</div>		
 	</div>
@@ -99,16 +131,16 @@
     	self.productos = ko.observableArray(productos);    
 	}
     var modelo = new productosModel([
-    	{id: "1001", producto: "PlayStation 4", valor: "300.00" },          
-        {id: "1002", producto: "XBOX ONE", valor: "330.00" },
-        {id: "1003", producto: "Nintendo Switch", valor: "290.00" },
-        {id: "1004", producto: "PSP Vita", valor: "250.00" },
-        {id: "1005", producto: "Nintendo 3DS", valor: "260.00" },
-        {id: "1006", producto: "Nintendo 2DS", valor: "190.00" },
-        {id: "1007", producto: "TV Samsung", valor: "3000.00" },
-        {id: "1008", producto: "Cartucho 3DS", valor: "50.00" },
-        {id: "1009", producto: "Game PS4", valor: "60.00" },
-        {id: "1010", producto: "Game XBOX", valor: "65.00" }
+    	{id: "01", producto: "PlayStation 4", valor: "300.00" },          
+        {id: "02", producto: "XBOX ONE", valor: "330.00" },
+        {id: "03", producto: "Nintendo Switch", valor: "290.00" },
+        {id: "04", producto: "PSP Vita", valor: "250.00" },
+        {id: "05", producto: "Nintendo 3DS", valor: "260.00" },
+        {id: "06", producto: "Nintendo 2DS", valor: "190.00" },
+        {id: "07", producto: "TV Samsung", valor: "3000.00" },
+        {id: "08", producto: "Cartucho 3DS", valor: "50.00" },
+        {id: "09", producto: "Game PS4", valor: "60.00" },
+        {id: "10", producto: "Game XBOX", valor: "65.00" }
     ]);
     ko.applyBindings(modelo);
 </script>
