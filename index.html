@@ -15,9 +15,14 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="js/tablesorter/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="js/tablesorter/jquery.tablesorter.min.js"></script>
+    <link href="js/tablesorter/themes/blue/style.css" rel="stylesheet" />
+
 	<title>Evaluacion Final KnockOut</title>		
 </head>
 <body>
+<!--CABECERA-->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -28,10 +33,7 @@
 			<ul class="nav navbar-nav navbar-right">
     			<li class="nav-item active">
       				<a class="nav-link" href="index.html">Home</a>
-    			</li>
-    			<li class="nav-item">
-      				<a class="nav-link" href="#">Tienda</a>
-    			</li>
+    			</li>    			
     			<li class="nav-item">
       				<a class="nav-link" href="#">Contacto</a>
     			</li>    
@@ -39,7 +41,7 @@
 		</div>
 	</nav>
 <!-- Carrousel -->
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">	  
+	<div id="myCarousel" class="carousel slide col-lg-12 visible-lg" data-ride="carousel">	  
   		<ol class="carousel-indicators">
     	<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     	<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -47,15 +49,68 @@
   		</ol>  
   		<div class="carousel-inner">
 	    	<div class="item active">
-      			<img src="img/1.jpg" alt="Los Angeles">
+      			<img src="img/1.jpg">
     		</div>
     		<div class="item">
-	      		<img src="img/2.jpg" alt="Chicago">
+	      		<img src="img/2.jpg">
     		</div>
     		<div class="item">
-	    	  	<img src="img/3.jpg" alt="New York">
+	    	  	<img src="img/3.jpg">
     		</div>
   		</div>
   	</div>
+<!--LISTA DE PRECIOS-->
+	<br><br>
+	<div class="container">
+		<div class="page-header">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-6">
+					<h1>Lista de Precios</h1>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<table class="tablesorter" id="mytable">
+                		<thead>
+                    		<tr>
+                        		<th>ID</th>
+                        		<th>Producto</th>
+                        		<th>Valor</th>                        
+                    		</tr>
+                		</thead>
+                		<tbody data-bind="foreach: productos ">
+                    		<tr>
+                        		<td data-bind="text:$data.id"> </td>
+                        		<td data-bind="text:$data.producto"> </td>
+                        		<td data-bind="text:$data.valor"> </td>             
+                    		</tr>
+                		</tbody>
+            		</table>
+				</div>
+			</div>
+		</div>		
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var productosModel = function(productos) {
+	    var self = this;
+    	self.productos = ko.observableArray(productos);    
+	}
+    var modelo = new productosModel([
+    	{id: "1001", producto: "PlayStation 4", valor: "300.00" },          
+        {id: "1002", producto: "XBOX ONE", valor: "330.00" },
+        {id: "1003", producto: "Nintendo Switch", valor: "290.00" },
+        {id: "1004", producto: "PSP Vita", valor: "250.00" },
+        {id: "1005", producto: "Nintendo 3DS", valor: "260.00" },
+        {id: "1006", producto: "Nintendo 2DS", valor: "190.00" },
+        {id: "1007", producto: "TV Samsung", valor: "3000.00" },
+        {id: "1008", producto: "Cartucho 3DS", valor: "50.00" },
+        {id: "1009", producto: "Game PS4", valor: "60.00" },
+        {id: "1010", producto: "Game XBOX", valor: "65.00" }
+    ]);
+    ko.applyBindings(modelo);
+</script>
 </body>
 </html>
