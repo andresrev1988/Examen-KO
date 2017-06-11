@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="widht=device-width, initial-scale=1.0">
+    <script src="js/jquery-2.1.3.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+    <script src="js/knockout-3.1.0.js"></script>
+    <script src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/kendo.common-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/kendo.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/kendo.dataviz.min.css">
+    <link rel="stylesheet" type="text/css" href="css/kendo.dataviz.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/tablesorter/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="js/tablesorter/jquery.tablesorter.min.js"></script>
+    <link href="js/tablesorter/themes/blue/style.css" rel="stylesheet" />
+
+    <title>Evaluacion Final KnockOut</title>        
+</head>
+<body>
+<!--CABECERA-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                Evaluación Final KO
+                </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item active">
+                    <a class="nav-link" href="productos.html">Productos</a>
+                </li>               
+                <li class="nav-item">
+                    <a class="nav-link" href="registro.html">Contacto</a>
+                </li>    
+            </ul>
+        </div>
+    </nav>
+<!-- Carrousel -->
+    <div id="myCarousel" class="carousel slide col-lg-12 visible-lg" data-ride="carousel">    
+        <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>  
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="img/1.jpg">
+            </div>
+            <div class="item">
+                <img src="img/2.jpg">
+            </div>
+            <div class="item">
+                <img src="img/3.jpg">
+            </div>
+        </div>
+    </div>
+<!--LISTA DE PRECIOS-->
+    <br><br>
+    <div class="container">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h1>Lista de Precios</h1>                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <table class="tablesorter" id="mytable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Producto</th>
+                                <th>Valor</th>                        
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: productos ">
+                            <tr>
+                                <td data-bind="text:$data.id"> </td>
+                                <td data-bind="text:$data.producto"> </td>
+                                <td data-bind="text:$data.valor"> </td>             
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+<!--Seleccion de Productos-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <form role="form">                      
+                        <legend>Orden de Compra</legend>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">   
+                                <fieldset class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="name" class="control-label ">Productos: </label>
+                                        <select id="productoIngresado" data-bind="options: productos,
+                                                optionsText:'producto',                    
+                                                value: Producto,
+                                                optionsCaption: 'Seleccione un Producto...'">
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="control-label ">Precio: </label>
+                                        <input id="precioIngresado" type="text" class="form-control"  data-bind="value: Producto() ? Producto().valor : '0.00'"/>                                       
+                                    </div>
+                                    <div class="form-group">                                    
+                                        <label for="name" class="control-label ">Cantidad: </label>
+                                        <input type="text" class="form-control" id="cantidadIngresada" placeholder="0"/>
+                                    </div>
+                                </fieldset>                                
+                            </div>                                      
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">                       
+                                <fieldset class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="name" class="control-label ">Identificación: </label>
+                                        <input type="text" class="form-control" id="cedulaIngresada" placeholder="ID"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="control-label ">Nombre: </label>
+                                        <input type="text" class="form-control" id="nombreIngresado" placeholder="Nombre Completo"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" data-bind="click:agregar" class="btn btn-success" onclick="">Registrar</button>
+                                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                                    </div>
+                                </fieldset>  
+                            </div> 
+                        </div>                        
+                   </form>              
+            </div>
+        </div>      
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <legend>Lista de Artículos Comprados</legend>
+                <div data-bind="kendoGrid: { data: Datos, scrollable: true, sortable: true}"></div>
+                <button type="button" data-bind="click:Imprimir" class="btn btn-success" onclick="">Imprimir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"> 
+
+var productosModel = function(productos) {  
+    var self = this;
+    self.Datos = ko.observableArray([{Identificacion:"",Cliente:"",Producto:"",Precio:"",Cantidad:"",Total:"",Eliminar:""}]);
+    self.productos = ko.observableArray(productos); 
+    self.Producto = ko.observable();    
+    self.Precio = ko.observable();
+    self.Cantidad = ko.observable();
+    self.Identificacion = ko.observable();
+    self.Cliente = ko.observable();    
+   // self.Eliminar = ko.observable();
+    self.agregar = function (){
+        var a = $('#precioIngresado').val();                  
+        var b = $('#cantidadIngresada').val();                  
+        var c = $('#productoIngresado').find('option:selected').text();
+        var d = $('#cedulaIngresada').val();   
+        var e = $('#nombreIngresado').val();
+        var t = parseFloat(b)*parseFloat(a);
+        var x = '<button type="button" data-bind="click:removeItem" class="btn btn-danger" >X</button>';
+        self.Datos.push({Identificacion:d,Cliente:e,Producto:c,Precio:a,Cantidad:b,Total:t,Eliminar:x});   
+    };      
+    self.removeItem = function(item) {      
+        self.Datos.remove(item);
+    }
+    self.Imprimir = function(){
+        window.print();
+    }
+}
+
+var modelo = new productosModel([
+    {id: "01", producto: "PlayStation 4", valor: "300.00" },          
+    {id: "02", producto: "XBOX ONE", valor: "330.00" },
+    {id: "03", producto: "Nintendo Switch", valor: "290.00" },
+    {id: "04", producto: "PSP Vita", valor: "250.00" },
+    {id: "05", producto: "Nintendo 3DS", valor: "260.00" },
+    {id: "06", producto: "Nintendo 2DS", valor: "190.00" },
+    {id: "07", producto: "TV Samsung", valor: "3000.00" },
+    {id: "08", producto: "Cartucho 3DS", valor: "50.00" },
+    {id: "09", producto: "Game PS4", valor: "60.00" },
+    {id: "10", producto: "Game XBOX", valor: "65.00" }        
+]);    
+ko.applyBindings(modelo);       
+</script>
+</body>
+</html>
+
